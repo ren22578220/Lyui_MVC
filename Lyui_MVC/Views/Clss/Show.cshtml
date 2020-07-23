@@ -1,0 +1,378 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+    <script src="~/Scripts/jquery-3.5.0.js"></script>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layui/layui.js"></script>
+</head>
+<body>
+    <form class="layui-form">
+
+      
+        <div style="display: none" id="adddiv">
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mName" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+
+            @*<div class="layui-inline">
+            <label class="layui-form-label">车队名称</label>
+            <div class="layui-input-inline">
+                <select name="mid" id="class" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+
+                </select>
+            </div>
+        </div>*@
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队数量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mnumber" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">运送地区</label>
+                <div class="layui-input-block">
+                    <input type="text" name="shippingRegion" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员</label>
+                <div class="layui-input-block">
+                    <input type="text" name="administrator" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队介绍</label>
+                <div class="layui-input-block">
+                    <input type="text" name="theTeam" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+          
+           
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <form class="layui-form" lay-filter="example">
+
+        <div style="display: none" id="editdiv">
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队名称</label>
+                <div class="layui-input-block">
+                    <input type="hidden" name="mid" />
+                    <input type="text" name="mName" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队数量</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mnumber" lay-verify="required" lay-reqtext="车辆姓名是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">运送地区</label>
+                <div class="layui-input-block">
+                    <input type="text" name="shippingRegion" lay-verify="required" lay-reqtext="车辆价格是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆价格" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员</label>
+                <div class="layui-input-block">
+                    <input type="text" name="administrator" lay-verify="required" lay-reqtext="车身颜色是必填项，岂能为空？" autocomplete="off" placeholder="请输入车身颜色" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">车队介绍</label>
+                <div class="layui-input-block">
+                    <input type="text" name="theTeam" lay-verify="required" lay-reqtext="车辆燃料是必填项，岂能为空？" autocomplete="off" placeholder="请输入车辆燃料" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="edit">修改</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <div class="demoTable">
+        搜索姓名：
+        <div class="layui-inline">
+            <input class="layui-input" name="mName" id="mName" autocomplete="off">
+        </div>
+       
+        <button id="searchBtn" class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i>搜索</button>
+        <button id="addBtn" class="layui-btn" data-type="reload"><i class="layui-icon">&#xe608;</i>添加</button>
+    </div>
+    <table id="idTest" lay-filter="demo"></table>
+    <script type="text/html" id="barDemo">
+
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    </script>
+
+    <script type="text/javascript">
+
+        //$(function () {
+        //    GetClass();
+        //})
+        ////绑定下拉
+        //function GetClass() {
+        //    $.ajax({
+        //        url: "http://localhost:9690/api/stu/GetClass",
+        //        dataType: "json",
+        //        type: "get",
+        //        success: function (data) {
+        //            console.log(data);
+        //            $(data).each(function () {
+        //                $("#mid").append('<option value="' + this.mid + '">' + this.mName + '</option>');
+        //                $("#class").append('<option value="' + this.mid + '">' + this.mName + '</option>');
+        //                $("#fclass").append('<option value="' + this.mid + '">' + this.mName + '</option>');
+
+
+        //            });
+        //        }
+        //    });
+
+        //}
+        layui.use(['table', 'form', 'jquery', 'element', 'layer'], function () {
+            var table = layui.table;
+            var form = layui.form;
+            var element = layui.element;
+            var layer = layui.layer;
+            var laydate = layui.laydate;
+            form.render('select');
+            table.render({
+                elem: '#idTest',
+                url: 'http://localhost:9690/api/Clss/GetClss',
+                cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,
+                title: '学生信息',
+                page: true //是否显示分页
+                ,
+                limit: 2 //每页默认显示的数量
+                , limits: [10, 20, 30, 40, 50]
+                , method: 'get'
+                , cols: [
+                    [
+                        //{ field: 'mid', title: '车队编号', align: 'center' },
+                        { field: 'mName', title: '车队名称', align: 'center' },
+                        { field: 'mnumber', title: '车队数量', align: 'center' },
+                        { field: 'shippingRegion', title: '运送地区', align: 'center' },
+                        { field: 'administrator', title: '管理员', align: 'center' },
+                        { field: 'theTeam', title: '车队介绍', align: 'center' },
+                        { fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo' }
+                    ]
+                ],
+                id: 'idTest'
+
+            });
+            //搜索
+            $("#searchBtn").on('click', function () {
+                var mName = $("#mName");
+               
+
+                form.render('select');
+                //执行重载
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {  
+                        mName: mName.val(),
+                      
+
+                    }
+                });
+            });
+            //添加窗口
+            $("#addBtn").click(function () {
+                //页面层
+                layer.open({
+                    type: 1,
+                    title: "新增页面",
+                    area: ['500px', '500px'], //宽高
+                    content: $("#adddiv"),
+                    maxmin: true
+                });
+                form.render('select');
+            });
+            //添加
+            form.on('submit(add)',
+                function (data) {
+                    //layer.msg(JSON.stringify(data.field));
+                    //int和bool得转换格式
+                    var obj = {};
+                    obj.mName = data.field.mName;
+                    obj.mnumber = parseInt(data.field.mnumber);
+                    obj.shippingRegion = data.field.shippingRegion;
+                    obj.administrator = data.field.administrator;
+                    obj.theTeam = data.field.theTeam;
+          
+                   
+                    console.log(obj);
+                    $.ajax({
+                        url: "http://localhost:9690/api/Clss/AddClss",
+                        dataType: "json",
+                        type: "post",
+                        data: JSON.stringify(obj),
+                        contentType: "application/json",
+                        success: function (data) {
+                            if (data > 0) {
+                                layer.alert('添加成功',
+                                    {
+                                        icon: 6,
+                                        yes: function (index) {
+                                            layer.close(index);
+                                            location.reload();
+                                        }
+                                    });
+
+                            } else {
+                                layer.alert('添加失败', { icon: 5 });
+                            }
+
+                        }
+
+                    });
+                    return false;
+                });
+            //修改
+            form.on('submit(edit)', function (data) {
+                //layer.msg(JSON.stringify(data.field));
+                //int和bool得转换格式
+                var obj = {};
+                obj.mid = parseInt(data.field.mid);
+                obj.mName = data.field.mName;
+                obj.mnumber = parseInt(data.field.mnumber);
+                obj.shippingRegion = data.field.shippingRegion;
+                obj.administrator = data.field.administrator;
+                obj.theTeam = data.field.theTeam;
+ 
+                $.ajax({
+                    url: "http://localhost:9690/api/Clss/EditClss",
+                    dataType: "json",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify(obj),
+                    success: function (data) {
+                        if (data > 0) {
+                            layer.alert('修改成功',
+                                {
+                                    icon: 6,
+                                    yes: function (index) {
+                                        layer.close(index);
+                                        location.reload();
+                                    }
+                                });
+
+                        } else {
+                            layer.alert('修改失败', { icon: 5 });
+                        }
+
+                    }
+
+                });
+                return false;
+            });
+            //监听工具条
+            table.on('tool(demo)',
+                function (obj) {
+                    var data = obj.data;
+                    if (obj.event === 'detail') {
+                        layer.msg('Mid：' + data.mid + ' 的查看操作');
+                        location.href ='/Stu/show'
+                    } else if (obj.event === 'del') {
+                        layer.confirm('真的删除行么',
+                            function (index) {
+                                layer.close(index);
+                                //layer.alert('编辑行：<br>' + JSON.stringify(data));
+                                var a = {};
+                                a.mid = parseInt(data.mid);
+                                a.mName = data.mName;
+                                a.mnumber = data.mnumber;
+                                a.shippingRegion = data.shippingRegion;
+                                a.administrator = data.administrator;
+                                a.theTeam = data.theTeam;
+
+                                $.ajax({
+                                    url: "http://localhost:9690/api/Clss/DelClss",
+                                    dataType: "json",
+                                    type: "post",
+                                    data: JSON.stringify(a),
+                                    contentType: "application/json",
+                                    success: function (data) {
+                                        if (data > 0) {
+                                            layer.alert('已删除',
+                                                {
+                                                    icon: 6,
+                                                    yes: function (index) {
+                                                        layer.close(index);
+                                                        obj.del();
+                                                    }
+                                                });
+
+                                        }
+                                        else {
+                                            layer.msg("删除失败", { icon: 5 });
+                                        }
+
+                                    }
+
+                                });
+                            });
+                    } else if (obj.event === 'edit') {
+                        //layer.alert('编辑行：<br>' + JSON.stringify(data));
+                        //页面层
+                        layer.open({
+                            type: 1,
+                            maxmin: true,
+                            title: "修改",
+                            area: ['500px', '500px'], //宽高
+                            content: $("#editdiv")
+                        });
+                        //重新渲染下拉
+                        form.render('select');
+
+                        //反填
+                        form.val('example',
+                            {
+                                "mid": data.mid,                           
+                                "mName": data.mName,
+                                "mnumber": data.mnumber,
+                                "shippingRegion": data.shippingRegion,
+                                "administrator": data.administrator,
+                                "theTeam": data.theTeam
+
+                            });
+                        //data.sex == true ? $("#nan").prop("checked", "checked") : $("#nv").prop("checked", "checked");
+                    }
+                });
+
+        });
+    </script>
+</body>
+</html>
